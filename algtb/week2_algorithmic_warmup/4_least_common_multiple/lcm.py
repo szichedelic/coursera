@@ -8,8 +8,23 @@ def lcm_naive(a, b):
 
     return a*b
 
+def gcd_fast(a, b):
+    dividend = a if (a >= b) else b
+    divisor = a if (a <= b) else b
+
+    while divisor != 0:
+        remainder = dividend % divisor
+        dividend = divisor
+        divisor = remainder
+
+    return dividend
+
+
+def lcm_fast(a, b):
+    return (a * b) // gcd_fast(a, b)
+
 if __name__ == '__main__':
     input = sys.stdin.read()
     a, b = map(int, input.split())
-    print(lcm_naive(a, b))
+    print(lcm_fast(a, b))
 

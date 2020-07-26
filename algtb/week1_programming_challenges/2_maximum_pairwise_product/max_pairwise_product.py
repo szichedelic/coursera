@@ -1,16 +1,19 @@
 # python3
+def quick_sort(array):
+  if len(array) <= 1:
+    return array
 
+  pivot = array[len(array)//2]
+  left = [x for x in array if x < pivot]
+  middle = [x for x in array if x == pivot]
+  right = [x for x in array if x > pivot]
+
+  return quick_sort(left) + middle + quick_sort(right)
 
 def max_pairwise_product(numbers):
     n = len(numbers)
-    max_product = 0
-    for first in range(n):
-        for second in range(first + 1, n):
-            max_product = max(max_product,
-                numbers[first] * numbers[second])
-
-    return max_product
-
+    numbers = quick_sort(numbers)
+    return numbers[n-1]*numbers[n-2]
 
 if __name__ == '__main__':
     input_n = int(input())
